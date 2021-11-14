@@ -52,6 +52,7 @@ function removeNote(e) {
     if (e.target.classList.contains('remove-note')) {
         e.target.parentElement.remove()
     }
+    removeNoteFromLocalStorage(e.target.parentElement.textContent)
 }
 
 // add note in local storage
@@ -102,4 +103,21 @@ function setItemFromLocalStorage() {
 
         noteList.appendChild(li)
     })
+}
+
+// remove note from local storage after reload
+function removeNoteFromLocalStorage(textContent) {
+    // remove X from note
+    const removableNote = textContent.substring(0, textContent.length - 1)
+
+    // get items from local storage
+    const noteFromLS = getNoteToLocalStorage()
+
+    noteFromLS.forEach(function (noteArray, index) {
+        if (removableNote === noteArray) {
+            noteFromLS.splice(index, 1)
+        }
+    })
+    localStorage.setItem('note-list', JSON.stringify(noteFromLS))
+    console.log(noteFromLS)
 }

@@ -11,6 +11,8 @@ function eventListener() {
     document.querySelector('.save').addEventListener('click', newNote)
     // access to the intended li and do somethings
     document.querySelector('.list').addEventListener('click', removeNote)
+    // get and add items that is in local storage after loaded
+    document.addEventListener('DOMContentLoaded', setItemFromLocalStorage)
 }
 
 //function
@@ -75,4 +77,29 @@ function getNoteToLocalStorage() {
         notes = JSON.parse(noteFromLS)
     }
     return notes
+}
+
+function setItemFromLocalStorage() {
+    const notes = getNoteToLocalStorage()
+    notes.forEach(function (note) {
+        const removeBtn = document.createElement('a')
+        removeBtn.textContent = 'X'
+        //add class for the X
+        removeBtn.classList = 'remove-note'
+
+        //creat element <li>
+        const li = document.createElement('li')
+
+        //adding value to the li element.
+        li.appendChild(document.createTextNode(note))
+
+        //adding X to the li element.
+        li.appendChild(removeBtn)
+
+        //adding li to note list.
+        li.style.paddingBottom = "12px"
+        li.style.listStyleType = "none"
+
+        noteList.appendChild(li)
+    })
 }

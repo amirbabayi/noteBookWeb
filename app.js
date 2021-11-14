@@ -44,6 +44,9 @@ function newNote(e) {
 
     noteList.appendChild(li)
 
+    // this.reset()
+    document.querySelector('#note').value= ''
+
     addNoteToLocalStorage(note);
 }
 

@@ -58,7 +58,7 @@ function addNoteToLocalStorage(note) {
 
     notes.push(note)
 
-    localStorage.setItem('notes', JSON.stringify(notes))
+    localStorage.setItem('note-list', JSON.stringify(notes))
     console.log(notes)
 }
 

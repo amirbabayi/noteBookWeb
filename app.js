@@ -13,9 +13,19 @@ function eventListener() {
     document.querySelector('.list').addEventListener('click', removeNote)
     // get and add items that is in local storage after loaded
     document.addEventListener('DOMContentLoaded', setItemFromLocalStorage)
+    // add enter key for save note
+    document.querySelector('.in-put').addEventListener('keydown', enterKey)
 }
 
 //function
+//function for enter key
+function enterKey(e) {
+    if (e.keyCode === 13) {
+        document.querySelector('.save').click()
+    }
+    document.querySelector('.in-put').reset()
+}
+
 // function to add the note to list.
 function newNote(e) {
     e.preventDefault()
@@ -45,7 +55,7 @@ function newNote(e) {
     noteList.appendChild(li)
 
     // this.reset()
-    document.querySelector('#note').value= ''
+    document.querySelector('#note').value = ''
 
     addNoteToLocalStorage(note);
 }
